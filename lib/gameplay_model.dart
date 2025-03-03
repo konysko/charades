@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/services.dart';
 
 sealed class GameplayState {}
 
@@ -55,6 +55,9 @@ class GameplayModel extends ChangeNotifier {
   void startGame() {
     // If there is an active timer, cancel it to avoid duplication
     _timer?.cancel();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeLeft,
+    ]);
 
     // Reset time if needed
     _timeLeft = _initialTime;
@@ -108,6 +111,9 @@ class GameplayModel extends ChangeNotifier {
         _currentWord = word;
       } else {
         _timer?.cancel();
+        SystemChrome.setPreferredOrientations([
+          DeviceOrientation.portraitUp,
+        ]);
         gameplayState = Completed();
       }
       notifyListeners();

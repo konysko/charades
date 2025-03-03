@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'gameplay_screen.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
 }
 

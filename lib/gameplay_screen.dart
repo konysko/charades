@@ -133,29 +133,41 @@ class _GameScreenState extends State<GameScreen> {
               fontSize: 32, fontWeight: FontWeight.bold, color: Colors.black),
         ),
         const SizedBox(height: 20),
-        Expanded(
-          child: Center(
-            child: ListView.builder(
-              shrinkWrap: true,
-              itemCount: provider.guessedWords.length,
-              itemBuilder: (context, index) {
-                final wordResult = provider.guessedWords[index];
-                return ListTile(
-                  title: Text(
-                    wordResult.word,
-                    style: TextStyle(
-                        fontSize: 24,
-                        color:
-                            wordResult.isGuessed ? Colors.green : Colors.red),
-                  ),
-                  leading: Icon(
-                    wordResult.isGuessed ? Icons.check : Icons.close,
-                    color: wordResult.isGuessed ? Colors.green : Colors.red,
-                  ),
-                );
-              },
-            ),
+        Container(
+          padding: const EdgeInsets.all(16.0),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(8),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black26,
+                blurRadius: 10.0,
+                offset: const Offset(0, 5),
+              ),
+            ],
           ),
+          child: ListView.builder(
+            shrinkWrap: true,
+            itemCount: provider.guessedWords.length,
+            itemBuilder: (context, index) {
+              final wordResult = provider.guessedWords[index];
+              return ListTile(
+                title: Text(
+                  wordResult.word,
+                  style: TextStyle(
+                      fontSize: 24,
+                      color: wordResult.isGuessed ? Colors.green : Colors.red),
+                ),
+                leading: Icon(
+                  wordResult.isGuessed ? Icons.check : Icons.close,
+                  color: wordResult.isGuessed ? Colors.green : Colors.red,
+                ),
+              );
+            },
+          ),
+        ),
+        Expanded(
+          child: Center(),
         ),
       ],
     );
